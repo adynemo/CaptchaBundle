@@ -1,6 +1,6 @@
 <?php
 
-namespace Ady\CaptchaBundle\Service;
+namespace Ady\Bundle\CaptchaBundle\Service;
 
 class DictionaryService
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ady\CaptchaBundle;
+namespace Ady\Bundle\CaptchaBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

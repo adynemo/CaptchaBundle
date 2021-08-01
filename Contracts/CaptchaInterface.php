@@ -1,6 +1,6 @@
 <?php
 
-namespace Ady\CaptchaBundle\Contracts;
+namespace Ady\Bundle\CaptchaBundle\Contracts;
 
 interface CaptchaInterface
 {

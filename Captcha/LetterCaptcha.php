@@ -1,9 +1,9 @@
 <?php
 
-namespace Ady\CaptchaBundle\Captcha;
+namespace Ady\Bundle\CaptchaBundle\Captcha;
 
-use Ady\CaptchaBundle\Contracts\CaptchaInterface;
-use Ady\CaptchaBundle\Service\DictionaryService;
+use Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface;
+use Ady\Bundle\CaptchaBundle\Service\DictionaryService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class LetterCaptcha implements CaptchaInterface

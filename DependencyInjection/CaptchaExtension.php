@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ady\CaptchaBundle\DependencyInjection;
+namespace Ady\Bundle\CaptchaBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;

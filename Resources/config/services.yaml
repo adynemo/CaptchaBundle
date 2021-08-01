@@ -4,20 +4,20 @@ services:
     autoconfigure: true
 
   _instanceof:
-    Ady\CaptchaBundle\Contracts\CaptchaInterface:
+    Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface:
       public: true
       tags: ['ady.captcha.captcha_challenge']
 
-  Ady\CaptchaBundle\Form\CaptchaType:
+  Ady\Bundle\CaptchaBundle\Form\CaptchaType:
     public: true
     arguments:
       $session: '@session'
       $captchas: !tagged_iterator ady.captcha.captcha_challenge
 
-  Ady\CaptchaBundle\Captcha\:
+  Ady\Bundle\CaptchaBundle\Captcha\:
     resource: '../../Captcha'
     public: false
 
-  Ady\CaptchaBundle\Service\:
+  Ady\Bundle\CaptchaBundle\Service\:
     resource: '../../Service'
     public: false

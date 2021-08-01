@@ -1,9 +1,9 @@
 <?php
 
-namespace Ady\CaptchaBundle\Form;
+namespace Ady\Bundle\CaptchaBundle\Form;
 
 
-use Ady\CaptchaBundle\Contracts\CaptchaInterface;
+use Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
