@@ -1,5 +1,5 @@
 captcha_label: Securité
-captcha_sentence: Quelle est la {index} {letter} du mot {word} ?
+captcha_sentence: Quelle est la %index% %letter% du mot %word% ?
 captcha_letter: lettre
 captcha_consonant: consonne
 captcha_vowel: voyelle

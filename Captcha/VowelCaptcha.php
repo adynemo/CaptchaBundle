@@ -47,9 +47,9 @@ class VowelCaptcha implements CaptchaInterface
     protected function getQuestion(string $word, int $letterIndex): string
     {
         return $this->translator->trans('captcha_sentence', [
-            'index' => $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex])),
-            'letter' => $this->translator->trans('captcha_vowel'),
-            'word' => $word,
+            '%index%' => $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex])),
+            '%letter%' => $this->translator->trans('captcha_vowel'),
+            '%word%' => $word,
         ]);
     }
 
