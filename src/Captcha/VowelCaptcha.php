@@ -17,9 +17,15 @@ class VowelCaptcha implements CaptchaInterface
         '-1' => 'last',
     ];
 
-    protected DictionaryService $dictionary;
+    /**
+     * @var DictionaryService
+     */
+    protected $dictionary;
 
-    protected TranslatorInterface $translator;
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
 
     public function __construct(DictionaryService $dictionary, TranslatorInterface $translator)
     {

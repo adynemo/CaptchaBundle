@@ -18,15 +18,30 @@ class CaptchaType extends AbstractType
 {
     const SESSION_KEY = 'captcha_answer';
 
-    protected CaptchaInterface $captcha;
+    /**
+     * @var CaptchaInterface
+     */
+    protected $captcha;
 
-    protected SessionInterface $session;
+    /**
+     * @var SessionInterface
+     */
+    protected $session;
 
-    protected string $question;
+    /**
+     * @var string
+     */
+    protected $question;
 
-    protected string $previousAnswer;
+    /**
+     * @var string
+     */
+    protected $previousAnswer;
 
-    protected string $nextAnswer;
+    /**
+     * @var string
+     */
+    protected $nextAnswer;
 
     public function __construct(SessionInterface $session, iterable $captchas)
     {
