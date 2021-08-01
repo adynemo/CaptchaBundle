@@ -1,0 +1,8 @@
+services:
+  _instanceof:
+    Ady\CaptchaBundle\Contracts\CaptchaInterface:
+      tags: ['captcha_challenge']
+
+  Ady\CaptchaBundle\Form\CaptchaType:
+    arguments:
+      $captchas: !tagged_iterator captcha_challenge

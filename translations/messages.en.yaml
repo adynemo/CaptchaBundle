@@ -1,0 +1,12 @@
+captcha_label: Security
+captcha_sentence: What is the {index} {letter} of the word {word}?
+captcha_letter: letter
+captcha_consonant: consonant
+captcha_vowel: vowel
+captcha_first: first
+captcha_second: second
+captcha_third: third
+captcha_fourth: fourth
+captcha_fifth: fifth
+captcha_last: last
+captcha_invalid: Wrong answer to the security question.
