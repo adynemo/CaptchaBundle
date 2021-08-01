@@ -4,7 +4,7 @@ namespace Ady\CaptchaBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AdyCaptchaBundle extends Bundle
+class CaptchaBundle extends Bundle
 {
     public function getPath(): string
     {
