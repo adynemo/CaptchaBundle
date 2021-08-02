@@ -9,11 +9,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class LetterCaptcha implements CaptchaInterface
 {
     protected const INDEX_MAPPING = [
-        '0'  => 'first',
-        '1'  => 'second',
-        '2'  => 'third',
-        '3'  => 'fourth',
-        '4'  => 'fifth',
+        '0' => 'first',
+        '1' => 'second',
+        '2' => 'third',
+        '3' => 'fourth',
+        '4' => 'fifth',
         '-1' => 'last',
     ];
 

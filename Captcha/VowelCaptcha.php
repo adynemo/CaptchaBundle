@@ -11,9 +11,9 @@ class VowelCaptcha implements CaptchaInterface
     protected const VOWEL = 'AEIOUY';
 
     protected const INDEX_MAPPING = [
-        '0'  => 'first',
-        '1'  => 'second',
-        '2'  => 'third',
+        '0' => 'first',
+        '1' => 'second',
+        '2' => 'third',
         '-1' => 'last',
     ];
 
@@ -62,9 +62,9 @@ class VowelCaptcha implements CaptchaInterface
 
         $answer = null;
 
-        for ($i = $letterIndex; $i >= 0; $i--) {
+        for ($i = $letterIndex; $i >= 0; --$i) {
             $answer = $word[strcspn($word, self::VOWEL)];
-            $word = preg_replace('/' . $answer . '/', '_', $word, 1);
+            $word = preg_replace('/'.$answer.'/', '_', $word, 1);
         }
 
         return $answer;

@@ -27,7 +27,7 @@ class CaptchaExtension extends Extension
 
         $container->setParameter('twig.form.resources', array_merge(
             [
-                '@Captcha/form/fields.html.twig'
+                '@Captcha/form/fields.html.twig',
             ],
             $container->getParameter('twig.form.resources')
         ));

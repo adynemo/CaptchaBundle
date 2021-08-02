@@ -2,7 +2,6 @@
 
 namespace Ady\Bundle\CaptchaBundle\Form;
 
-
 use Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,7 +15,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CaptchaType extends AbstractType
 {
-    const SESSION_KEY = 'captcha_answer';
+    public const SESSION_KEY = 'captcha_answer';
 
     /**
      * @var CaptchaInterface

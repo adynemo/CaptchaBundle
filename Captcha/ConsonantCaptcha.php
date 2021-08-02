@@ -11,9 +11,9 @@ class ConsonantCaptcha implements CaptchaInterface
     protected const CONSONANT = 'BCDFGHJKLMNPQRSTVWXZ';
 
     protected const INDEX_MAPPING = [
-        '0'  => 'first',
-        '1'  => 'second',
-        '2'  => 'third',
+        '0' => 'first',
+        '1' => 'second',
+        '2' => 'third',
         '-1' => 'last',
     ];
 
@@ -35,7 +35,7 @@ class ConsonantCaptcha implements CaptchaInterface
 
     public function getChallenge(): array
     {
-        $letterIndex = array_rand(self::INDEX_MAPPING);
+        $letterIndex = $this->getRandomIndex();
         $word = $this->dictionary->getRandomWord();
 
         return [
@@ -46,9 +46,12 @@ class ConsonantCaptcha implements CaptchaInterface
 
     protected function getQuestion(string $word, int $letterIndex): string
     {
+        $index = $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex]));
+        $letter = $this->translator->trans('captcha_consonant');
+
         return $this->translator->trans('captcha_sentence', [
-            '%index%' => $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex])),
-            '%letter%' => $this->translator->trans('captcha_consonant'),
+            '%index%' => $index,
+            '%letter%' => $letter,
             '%word%' => $word,
         ]);
     }
@@ -62,9 +65,9 @@ class ConsonantCaptcha implements CaptchaInterface
 
         $answer = null;
 
-        for ($i = $letterIndex; $i >= 0; $i--) {
+        for ($i = $letterIndex; $i >= 0; --$i) {
             $answer = $word[strcspn($word, self::CONSONANT)];
-            $word = preg_replace('/' . $answer . '/', '_', $word, 1);
+            $word = preg_replace('/'.$answer.'/', '_', $word, 1);
         }
 
         return $answer;
@@ -73,5 +76,10 @@ class ConsonantCaptcha implements CaptchaInterface
     public function checkAnswer($expected, $given): bool
     {
         return strtoupper($given) === strtoupper($expected);
+    }
+
+    protected function getRandomIndex(): string
+    {
+        return array_rand(self::INDEX_MAPPING);
     }
 }
