@@ -1,3 +1,7 @@
 docker-compose.yaml export-ignore
 Dockerfile export-ignore
 .gitattributes export-ignore
+ci/ export-ignore
+docker export-ignore
+.php-cs-fixer.php export-ignore
+phpunit.xml.php export-ignore
