@@ -3,10 +3,8 @@
 namespace Ady\Bundle\CaptchaBundle\Captcha;
 
 use Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface;
-use Ady\Bundle\CaptchaBundle\Service\DictionaryService;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ConsonantCaptcha implements CaptchaInterface
+class ConsonantCaptcha extends AbstractCaptcha implements CaptchaInterface
 {
     protected const CONSONANT = 'BCDFGHJKLMNPQRSTVWXZ';
 
@@ -17,51 +15,18 @@ class ConsonantCaptcha implements CaptchaInterface
         '-1' => 'last',
     ];
 
-    /**
-     * @var DictionaryService
-     */
-    protected $dictionary;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    public function __construct(DictionaryService $dictionary, TranslatorInterface $translator)
-    {
-        $this->dictionary = $dictionary;
-        $this->translator = $translator;
-    }
-
-    public function getChallenge(): array
-    {
-        $letterIndex = $this->getRandomIndex();
-        $word = $this->dictionary->getRandomWord();
-
-        return [
-            $this->getQuestion($word, $letterIndex),
-            $this->getAnswer($word, $letterIndex),
-        ];
-    }
-
     protected function getQuestion(string $word, int $letterIndex): string
     {
-        $index = $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex]));
-        $letter = $this->translator->trans('captcha_consonant');
-
         return $this->translator->trans('captcha_sentence', [
-            '%index%' => $index,
-            '%letter%' => $letter,
+            '%index%' => $this->translator->trans(sprintf('captcha_%s', self::INDEX_MAPPING[$letterIndex])),
+            '%letter%' => $this->translator->trans('captcha_consonant'),
             '%word%' => $word,
         ]);
     }
 
     protected function getAnswer(string $word, int $letterIndex): string
     {
-        if (0 > $letterIndex) {
-            $letterIndex = abs($letterIndex) - 1;
-            $word = strrev($word);
-        }
+        [$word, $letterIndex] = $this->handleLastIndex($word, $letterIndex);
 
         $answer = null;
 
@@ -71,15 +36,5 @@ class ConsonantCaptcha implements CaptchaInterface
         }
 
         return $answer;
-    }
-
-    public function checkAnswer($expected, $given): bool
-    {
-        return strtoupper($given) === strtoupper($expected);
-    }
-
-    protected function getRandomIndex(): string
-    {
-        return array_rand(self::INDEX_MAPPING);
     }
 }

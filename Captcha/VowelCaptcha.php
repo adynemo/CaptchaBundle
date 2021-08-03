@@ -3,10 +3,8 @@
 namespace Ady\Bundle\CaptchaBundle\Captcha;
 
 use Ady\Bundle\CaptchaBundle\Contracts\CaptchaInterface;
-use Ady\Bundle\CaptchaBundle\Service\DictionaryService;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
-class VowelCaptcha implements CaptchaInterface
+class VowelCaptcha extends AbstractCaptcha implements CaptchaInterface
 {
     protected const VOWEL = 'AEIOUY';
 
@@ -16,33 +14,6 @@ class VowelCaptcha implements CaptchaInterface
         '2' => 'third',
         '-1' => 'last',
     ];
-
-    /**
-     * @var DictionaryService
-     */
-    protected $dictionary;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    public function __construct(DictionaryService $dictionary, TranslatorInterface $translator)
-    {
-        $this->dictionary = $dictionary;
-        $this->translator = $translator;
-    }
-
-    public function getChallenge(): array
-    {
-        $letterIndex = $this->getRandomIndex();
-        $word = $this->dictionary->getRandomWord();
-
-        return [
-            $this->getQuestion($word, $letterIndex),
-            $this->getAnswer($word, $letterIndex),
-        ];
-    }
 
     protected function getQuestion(string $word, int $letterIndex): string
     {
@@ -55,10 +26,7 @@ class VowelCaptcha implements CaptchaInterface
 
     protected function getAnswer(string $word, int $letterIndex): string
     {
-        if (0 > $letterIndex) {
-            $letterIndex = abs($letterIndex) - 1;
-            $word = strrev($word);
-        }
+        [$word, $letterIndex] = $this->handleLastIndex($word, $letterIndex);
 
         $answer = null;
 
@@ -68,15 +36,5 @@ class VowelCaptcha implements CaptchaInterface
         }
 
         return $answer;
-    }
-
-    public function checkAnswer($expected, $given): bool
-    {
-        return strtoupper($given) === strtoupper($expected);
-    }
-
-    protected function getRandomIndex(): string
-    {
-        return array_rand(self::INDEX_MAPPING);
     }
 }
