@@ -35,7 +35,7 @@ class VowelCaptcha implements CaptchaInterface
 
     public function getChallenge(): array
     {
-        $letterIndex = array_rand(self::INDEX_MAPPING);
+        $letterIndex = $this->getRandomIndex();
         $word = $this->dictionary->getRandomWord();
 
         return [
@@ -73,5 +73,10 @@ class VowelCaptcha implements CaptchaInterface
     public function checkAnswer($expected, $given): bool
     {
         return strtoupper($given) === strtoupper($expected);
+    }
+
+    protected function getRandomIndex(): string
+    {
+        return array_rand(self::INDEX_MAPPING);
     }
 }

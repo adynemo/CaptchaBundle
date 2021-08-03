@@ -2,18 +2,18 @@
 
 namespace Ady\Bundle\CaptchaBundle\Tests\Captcha;
 
-use Ady\Bundle\CaptchaBundle\Captcha\ConsonantCaptcha;
+use Ady\Bundle\CaptchaBundle\Captcha\VowelCaptcha;
 use Ady\Bundle\CaptchaBundle\Service\DictionaryService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ConsonantCaptchaTest extends TestCase
+class VowelCaptchaTest extends TestCase
 {
     public function testCanReturnOneChallenge()
     {
         $index = 'index';
         $letter = 'letter';
-        $word = 'WORD';
+        $word = 'RANDOM';
         $question = 'question';
 
         $dictionary = $this->getMockBuilder(DictionaryService::class)
@@ -24,7 +24,7 @@ class ConsonantCaptchaTest extends TestCase
             ->willReturn($word);
 
         $translatorFirstCallArgs = ['captcha_second'];
-        $translatorSecondCallArgs = ['captcha_consonant'];
+        $translatorSecondCallArgs = ['captcha_vowel'];
         $translatorThirdCallArgs = ['captcha_sentence', [
             '%index%' => $index,
             '%letter%' => $letter,
@@ -39,7 +39,7 @@ class ConsonantCaptchaTest extends TestCase
             ->withConsecutive($translatorFirstCallArgs, $translatorSecondCallArgs, $translatorThirdCallArgs)
             ->willReturnOnConsecutiveCalls($index, $letter, $question);
 
-        $captcha = $this->getMockBuilder(ConsonantCaptcha::class)
+        $captcha = $this->getMockBuilder(VowelCaptcha::class)
             ->setConstructorArgs([$dictionary, $translator])
             ->onlyMethods(['getRandomIndex'])
             ->getMock();
@@ -50,14 +50,14 @@ class ConsonantCaptchaTest extends TestCase
         $challenge = $captcha->getChallenge();
 
         $this->assertIsArray($challenge);
-        $this->assertEquals([$question, 'R'], $challenge);
+        $this->assertEquals([$question, 'O'], $challenge);
     }
 
     public function testCanReturnLastConsonantChallenge()
     {
         $index = 'index';
         $letter = 'letter';
-        $word = 'WORD';
+        $word = 'RANDOM';
         $question = 'question';
 
         $dictionary = $this->getMockBuilder(DictionaryService::class)
@@ -68,7 +68,7 @@ class ConsonantCaptchaTest extends TestCase
             ->willReturn($word);
 
         $translatorFirstCallArgs = ['captcha_last'];
-        $translatorSecondCallArgs = ['captcha_consonant'];
+        $translatorSecondCallArgs = ['captcha_vowel'];
         $translatorThirdCallArgs = ['captcha_sentence', [
             '%index%' => $index,
             '%letter%' => $letter,
@@ -83,7 +83,7 @@ class ConsonantCaptchaTest extends TestCase
             ->withConsecutive($translatorFirstCallArgs, $translatorSecondCallArgs, $translatorThirdCallArgs)
             ->willReturnOnConsecutiveCalls($index, $letter, $question);
 
-        $captcha = $this->getMockBuilder(ConsonantCaptcha::class)
+        $captcha = $this->getMockBuilder(VowelCaptcha::class)
             ->setConstructorArgs([$dictionary, $translator])
             ->onlyMethods(['getRandomIndex'])
             ->getMock();
@@ -94,7 +94,7 @@ class ConsonantCaptchaTest extends TestCase
         $challenge = $captcha->getChallenge();
 
         $this->assertIsArray($challenge);
-        $this->assertEquals([$question, 'D'], $challenge);
+        $this->assertEquals([$question, 'O'], $challenge);
     }
 
     public function testCanAcceptAnswer()
@@ -102,9 +102,9 @@ class ConsonantCaptchaTest extends TestCase
         $dictionary = new DictionaryService();
         $translator = $this->createMock(TranslatorInterface::class);
 
-        $captcha = new ConsonantCaptcha($dictionary, $translator);
+        $captcha = new VowelCaptcha($dictionary, $translator);
 
-        $check = $captcha->checkAnswer('B', 'b');
+        $check = $captcha->checkAnswer('A', 'a');
 
         $this->assertTrue($check);
     }
@@ -114,9 +114,9 @@ class ConsonantCaptchaTest extends TestCase
         $dictionary = new DictionaryService();
         $translator = $this->createMock(TranslatorInterface::class);
 
-        $captcha = new ConsonantCaptcha($dictionary, $translator);
+        $captcha = new VowelCaptcha($dictionary, $translator);
 
-        $check = $captcha->checkAnswer('C', 'b');
+        $check = $captcha->checkAnswer('A', 'e');
 
         $this->assertFalse($check);
     }

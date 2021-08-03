@@ -51,7 +51,7 @@ class CaptchaType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        list($this->question, $this->nextAnswer) = $this->captcha->getChallenge();
+        [$this->question, $this->nextAnswer] = $this->captcha->getChallenge();
         $this->handleSession();
     }
 
