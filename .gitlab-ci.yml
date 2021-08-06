@@ -20,8 +20,7 @@ test:7.2:
     SYMFONY_DEPRECATIONS_HELPER: 'max[direct]=0'
     XDEBUG: '2.8.1'
   script:
-    - ./vendor/bin/phpunit --colors=never
-    - ./vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --diff
+    - composer ci
 
 test:7.3:
   image: php:7.3
@@ -30,8 +29,7 @@ test:7.3:
     SYMFONY_DEPRECATIONS_HELPER: 'max[direct]=0'
     XDEBUG: '2.8.1'
   script:
-    - ./vendor/bin/phpunit --colors=never
-    - ./vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --diff
+    - composer ci
 
 test:7.4:
   image: php:7.4
@@ -40,8 +38,7 @@ test:7.4:
     SYMFONY_DEPRECATIONS_HELPER: 'max[direct]=0'
     XDEBUG: '2.8.1'
   script:
-    - ./vendor/bin/phpunit --colors=never
-    - ./vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --diff
+    - composer ci
 
 test:8.0:
   image: php:8.0
@@ -50,5 +47,4 @@ test:8.0:
     SYMFONY_DEPRECATIONS_HELPER: 'max[direct]=0'
     XDEBUG: '3.0.0'
   script:
-    - ./vendor/bin/phpunit --colors=never
-    - ./vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --diff
+    - composer ci

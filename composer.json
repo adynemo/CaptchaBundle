@@ -3,6 +3,17 @@
     "description": "User and privacy friendly captcha for your Symfony project",
     "type": "symfony-bundle",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Ady",
+            "email": "ady@ecomail.io"
+        }
+    ],
+    "scripts": {
+        "test": "@composer lint && phpunit",
+        "lint": "vendor/bin/php-cs-fixer fix -v --show-progress=dots",
+        "ci": "vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --diff && phpunit --colors=never"
+    },
     "autoload": {
         "psr-4": {
             "Ady\\Bundle\\CaptchaBundle\\": ""
@@ -13,12 +24,6 @@
             "Ady\\Bundle\\CaptchaBundle\\Tests\\": "Tests"
         }
     },
-    "authors": [
-        {
-            "name": "Ady",
-            "email": "ady@ecomail.io"
-        }
-    ],
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.2",
