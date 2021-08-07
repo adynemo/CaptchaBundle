@@ -55,8 +55,8 @@ abstract class AbstractCaptcha implements CaptchaInterface
 
     protected function getRandomIndex(): string
     {
-        if ([] === $this::INDEX_MAPPING) {
-            throw new RuntimeException('You must override this INDEX_MAPPING constant.');
+        if (!is_array($this::INDEX_MAPPING) || [] === $this::INDEX_MAPPING) {
+            throw new RuntimeException('INDEX_MAPPING constant must be an array and be overridden.');
         }
 
         return array_rand($this::INDEX_MAPPING);
