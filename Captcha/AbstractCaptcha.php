@@ -55,11 +55,11 @@ abstract class AbstractCaptcha implements CaptchaInterface
 
     protected function getRandomIndex(): string
     {
-        if ([] === self::INDEX_MAPPING) {
+        if ([] === $this::INDEX_MAPPING) {
             throw new RuntimeException('You must override this INDEX_MAPPING constant.');
         }
 
-        return array_rand(self::INDEX_MAPPING);
+        return array_rand($this::INDEX_MAPPING);
     }
 
     protected function handleLastIndex(string $word, int $letterIndex): array
