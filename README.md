@@ -1,5 +1,5 @@
 <div align="center">
-<h2>CaptchaBundle</h2>
+<h1>CaptchaBundle</h1>
 
 [![pipeline status](https://gitlab.com/adynemo/captchabundle/badges/main/pipeline.svg)](https://gitlab.com/adynemo/captchabundle/-/commits/main)
 [![coverage report](https://gitlab.com/adynemo/captchabundle/badges/main/coverage.svg)](https://gitlab.com/adynemo/captchabundle/-/commits/main)
@@ -8,7 +8,9 @@
 
 # Overview
 
-This bundle allows you to add a simple and privacy-friendly captcha to your website's forms.
+Make your website more secure and keep the robots away!
+
+This bundle allows you to add a simple and privacy-friendly captcha to your Symfony's forms.
 
 No Google dependency or other third party. This is just a simple challenge, a random question that the user have to answer to validate the form.
 
