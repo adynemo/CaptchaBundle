@@ -39,6 +39,8 @@ Add a new field to your form with `CaptchaType`. Some options are recommended:
 So, your captcha field looks like:
 
 ```php
+use Ady\Bundle\CaptchaBundle\Form\CaptchaType;
+
 ->add('captcha', CaptchaType::class, [
     'mapped' => false,
     'required' => true,
